@@ -2,6 +2,7 @@
 
 # Editors
 .vscode/
+.vscode
 .idea/
 
 # Vagrant
