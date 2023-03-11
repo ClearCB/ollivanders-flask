@@ -1,5 +1,4 @@
 from domain.items.NormalItem import NormalItem
-from domain.items.NormalItem import Item
 
 """
 We will create a class called 'Aged brie', in which we will inheritance the class
@@ -12,15 +11,15 @@ class AgedBrie(NormalItem):
     # Constructor, inheritated from Item class.
     def __init__(self, name, sell_in, quality):
 
-        Item.__init__(self, name, sell_in, quality)
+        NormalItem.__init__(self, name, sell_in, quality)
 
     # Override the method updateQuality
-    def updateQuality(self):
+    def update_quality(self):
 
         if self.sell_in >= 0:
-            self.setQuality(+1)
+            self.set_quality(+1)
 
         else:
-            self.setQuality(+2)
+            self.set_quality(+2)
 
-        self.setSellIn()
+        self.set_sell_in()

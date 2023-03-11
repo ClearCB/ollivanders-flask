@@ -1,4 +1,4 @@
-from domain.items.NormalItem import Item
+from domain.items.Item import Item
 
 """
 This class will adquire the propierties about the Item class, which give it the atributes
@@ -15,28 +15,28 @@ class NormalItem(Item):
         Item.__init__(self, name, sell_in, quality)
 
     # Getters/Setters
-    def getName(self):
+    def get_name(self):
 
         return self.name
 
-    def getSellIn(self):
+    def get_sell_n(self):
 
         return self.sell_in
 
-    def getQuality(self):
+    def get_quality(self):
 
         return self.quality
 
-    def setName(self, new_name):
+    def set_name(self, new_name):
 
         self.name = new_name
 
-    def setSellIn(self):
+    def set_sell_in(self):
 
         self.sell_in = self.sell_in + -1
 
     # By domain, the quality has the following behaviour (check ProblemSpecificationRequirements.txt)
-    def setQuality(self, quality_increment):
+    def set_quality(self, quality_increment):
 
         self.quality += quality_increment
 
@@ -53,15 +53,15 @@ class NormalItem(Item):
         )  # Invariant, the quality must be always under those values
 
     # Override the method updateQuality adapted to NormalItems
-    def updateQuality(self):
+    def update_quality(self):
 
         if self.sell_in >= 0:
 
-            self.setQuality(-1)
+            self.set_quality(-1)
 
         elif self.sell_in < 0:
 
-            self.setQuality(-2)
+            self.set_quality(-2)
 
         # We change the value of sell-in after updating quality
-        self.setSellIn()
+        self.set_sell_in()

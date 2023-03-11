@@ -1,0 +1,63 @@
+At this file we will keep update the "behaviour" of each category existing in the GildedRose shop. 
+Each product has a "name", a "sell-in" date and a "quality" that describe each product.
+
+First we will introduce each type of product they offer:
+
+- Normal Items
+- Aged Brie
+- Backstage
+- Sulfuras
+
+Last introduction:
+
+- Conjured
+
+The problem is that the quality update behaviour of each product is diferent, so we will make a list
+on how it works.
+
+Common
+------
+
+All the items at the shop, has a common constraint about the quality:
+
+The quality is always greater or equal than 0 and lower than 50.
+
+------------
+Normal Items
+------------
+
+The quality of Normal Items degrade 1 per day passed till the sell-in date arrives. Once this date arrives
+the quality starts degrading twice fast as normal.
+
+---------
+Aged Brie
+---------
+
+The quality of Aged Brie items increases the quality in a reverse ways than the NormalItem does.
+
+The longer the sell_in date is close, the more quality the item gets
+
+Increases 1 till the sell-in date arrives, and then it start upgrading its quality per 2. 
+
+------------------------
+Sulfuras, legendary item
+------------------------
+
+The sulfuras item is a little bit special, since it is legendary...it wont even be sold and 
+its quality will never be diferent than 80.
+
+---------
+Backstage
+---------
+
+The backstage item quality update will depend on the sell in date, the closest it is the more quality it has the item.
+
+If the sell in date is 10 or less, the quality will increase by 2. If the sell-in date is 5 or less it increases by 3
+if the sell in data is 0, the quality drops to 0
+
+--------
+Conjured
+--------
+
+The conjured item, decreases its quality twice as fast as normal items. per 2 if sell in did not arrived
+Per 4 if it already passed

@@ -1,5 +1,4 @@
 from domain.items.NormalItem import NormalItem
-from domain.items.NormalItem import Item
 
 """
 This class will create objects of Backstage type
@@ -9,21 +8,21 @@ This class will create objects of Backstage type
 class Backstage(NormalItem):
     def __init__(self, name, sell_in, quality):
 
-        Item.__init__(self, name, sell_in, quality)
+        NormalItem.__init__(self, name, sell_in, quality)
 
     # Override the method updateQuality
-    def updateQuality(self):
+    def update_quality(self):
 
         if 5 < self.sell_in <= 10:
 
-            self.setQuality(+2)
+            self.set_quality(+2)
 
         elif 0 < self.sell_in <= 5:
 
-            self.setQuality(+3)
+            self.set_quality(+3)
 
         elif self.sell_in <= 0:
 
             self.quality = 0
 
-        self.setSellIn()
+        self.set_sell_in()

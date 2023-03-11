@@ -1,6 +1,4 @@
 from domain.items.NormalItem import NormalItem
-from domain.items.NormalItem import Item
-
 
 """
 This class will be for Sulfuras, legendary item.
@@ -10,9 +8,9 @@ This class will be for Sulfuras, legendary item.
 class Sulfuras(NormalItem):
     def __init__(self, name, sell_in, quality):
 
-        Item.__init__(self, name, sell_in, quality)
+        NormalItem.__init__(self, name, sell_in, quality)
 
     # Override new updateQuality method
-    def updateQuality(self):
+    def update_quality(self):
 
         self.quality = 80

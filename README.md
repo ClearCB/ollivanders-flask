@@ -6,3 +6,6 @@ Also there will be my solution of the [refactoring kata](https://github.com/emil
 
 The exercise that will be stored in this repository, will have the same statment but I wll create a "web" in which there will be an API REST additional at the solution.
 
+## Domain
+
+To understand the working application is important you to read the following documents: []() and []()

@@ -8,8 +8,8 @@ class GildedRose:
 
         self.items = items
 
-    def updateInventory(self):
+    def update_inventory(self):
 
         for item in self.items:
 
-            item.updateQuality()
+            item.update_quality()
