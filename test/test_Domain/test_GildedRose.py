@@ -1,5 +1,5 @@
 from domain.GildedRose import GildedRose 
-from test.test_Domain.test_variables import items_day_one, items_day_thirty
+from test.test_domain.test_variables import items_day_one, items_day_thirty
 import pytest
 
 @pytest.fixture
