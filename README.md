@@ -23,11 +23,18 @@ To understand the working application is important you to read the following doc
 
 ## Use
 
+## Pre-req
+
+* Flask
+* pymongo
+
 ## Achitecture
 
 ## Design
 
 ## Database schema
+
+MongoDB local with Docker.
 
 ## Implementation
 
