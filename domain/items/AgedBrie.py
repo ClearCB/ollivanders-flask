@@ -16,7 +16,7 @@ class AgedBrie(NormalItem):
     # Override the method updateQuality
     def update_quality(self):
 
-        if self.sell_in >= 0:
+        if self.sell_in > 0:
             self.set_quality(+1)
 
         else:
