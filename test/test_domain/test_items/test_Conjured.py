@@ -15,28 +15,38 @@ def conjured():
 @pytest.mark.test_update_quality
 def test_update_quality(conjured):
 
-    check_quality = 30 # The quality starts at 30
-    check_sell_in = 10
-    # We make a loop to count 20 days and see if the quality is having a correctly behaviour
-    for i in range(0,20):
+    # Day zero
+    assert conjured.sell_in == 10
+    assert conjured.quality == 30    
+    conjured.update_quality()
+    
+    # Day one
+    assert conjured.sell_in == 9
+    assert conjured.quality == 28
+    conjured.update_quality()
+    
+    # Day two
+    assert conjured.sell_in == 8
+    assert conjured.quality == 26
+    conjured.update_quality()
+    
+    # Day three
+    assert conjured.sell_in == 7
+    assert conjured.quality == 24
+    conjured.update_quality()
+    
+    # Day four
+    assert conjured.sell_in == 6
+    assert conjured.quality == 22
+    conjured.update_quality()
+    
+    # Day five
+    assert conjured.sell_in == 5
+    assert conjured.quality == 20
+    conjured.update_quality()
+    
+    # Day six
+    assert conjured.sell_in == 4
+    assert conjured.quality == 18
 
-        # If the sellin is negative, decreases 4
-        if check_sell_in < 0:
-            check_quality -= 4
-        
-        # if the quality is negative, it returns to 0
-        if check_quality < 0:
-            check_quality = 0
-
-        # Else if, the quality decreases 2
-        elif check_sell_in >= 0:
-            check_quality -=2
-
-        # We update de quality to the object
-        conjured.update_quality()
-        check_sell_in -= 1
-
-        # We compare if both qualities have the same behaviour
-        assert conjured.quality == check_quality
-        assert conjured.sell_in == check_sell_in
 
