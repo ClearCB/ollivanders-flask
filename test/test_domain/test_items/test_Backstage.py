@@ -17,27 +17,36 @@ def backstage():
 @pytest.mark.test_update_quality
 def test_update_quality(backstage):
 
-    check_sell_in = 13
-    check_quality = 40
-    for i in range(0,15):
-
-        if 5 < check_sell_in <= 10:
-
-            check_quality += 2
-        
-        elif 0 < check_sell_in <= 5:
-
-            check_quality += 3
-
-        elif check_sell_in <= 0:
-
-            check_quality = 0
-
-        if check_quality >= 50:
-
-            check_quality = 50
-
-        backstage.update_quality()
-        check_sell_in -= 1
-        assert check_quality == backstage.quality
-        assert check_sell_in == backstage.sell_in
+    # Day zero
+    assert backstage.sell_in == 13
+    assert backstage.quality == 40    
+    backstage.update_quality()
+    
+    # Day one
+    assert backstage.sell_in == 12
+    assert backstage.quality == 41
+    backstage.update_quality()
+    
+    # Day two
+    assert backstage.sell_in == 11
+    assert backstage.quality == 42
+    backstage.update_quality()
+    
+    # Day three
+    assert backstage.sell_in == 10
+    assert backstage.quality == 43
+    backstage.update_quality()
+    
+    # Day four
+    assert backstage.sell_in == 9
+    assert backstage.quality == 45
+    backstage.update_quality()
+    
+    # Day five
+    assert backstage.sell_in == 8
+    assert backstage.quality == 47
+    backstage.update_quality()
+    
+    # Day six
+    assert backstage.sell_in == 7
+    assert backstage.quality == 49

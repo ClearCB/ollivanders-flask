@@ -13,7 +13,11 @@ class Backstage(NormalItem):
     # Override the method updateQuality
     def update_quality(self):
 
-        if 5 < self.sell_in <= 10:
+        if self.sell_in > 10:
+
+            self.set_quality(+1)
+        
+        elif 5 < self.sell_in <= 10:
 
             self.set_quality(+2)
 
