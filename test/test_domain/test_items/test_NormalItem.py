@@ -46,27 +46,36 @@ def test_set_quality(mouse):
 @pytest.mark.test_update_quality
 def test_update_quality(mouse):
 
-    check_quality = 10 # The quality starts at 10
-    check_sell_in = 5
-    # We make a loop to count 11 days and see if the quality is having a correctly behaviour
-    for i in range(0,12):
-
-        # If the sellin is negative, decreases 2
-        if check_sell_in < 0:
-            check_quality -= 2
-        
-        # if the quality is negative, it returns to 0
-        if check_quality < 0:
-            check_quality = 0
-
-        # Else if, the quality decreases 1
-        elif check_sell_in >= 0:
-            check_quality -=1
-
-        # We update de quality to the object
-        mouse.update_quality()
-        check_sell_in -= 1
-
-        # We compare if both qualities have the same behaviour
-        assert mouse.quality == check_quality
-        assert mouse.sell_in == check_sell_in
+    # Day zero
+    assert mouse.sell_in == 5
+    assert mouse.quality == 10    
+    mouse.update_quality()
+    
+    # Day one
+    assert mouse.sell_in == 4
+    assert mouse.quality == 9
+    mouse.update_quality()
+    
+    # Day two
+    assert mouse.sell_in == 3
+    assert mouse.quality == 8
+    mouse.update_quality()
+    
+    # Day three
+    assert mouse.sell_in == 2
+    assert mouse.quality == 7
+    mouse.update_quality()
+    
+    # Day four
+    assert mouse.sell_in == 1
+    assert mouse.quality == 6
+    mouse.update_quality()
+    
+    # Day five
+    assert mouse.sell_in == 0
+    assert mouse.quality == 5
+    mouse.update_quality()
+    
+    # Day six
+    assert mouse.sell_in == -1
+    assert mouse.quality == 3

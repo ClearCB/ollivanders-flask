@@ -55,11 +55,11 @@ class NormalItem(Item):
     # Override the method updateQuality adapted to NormalItems
     def update_quality(self):
 
-        if self.sell_in >= 0:
+        if self.sell_in > 0:
 
             self.set_quality(-1)
 
-        elif self.sell_in < 0:
+        elif self.sell_in <= 0:
 
             self.set_quality(-2)
 
