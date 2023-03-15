@@ -15,9 +15,36 @@ def sulfur():
 @pytest.mark.test_update_quality
 def test_update_quality(sulfur):
 
-    for i in range(0,15):
-        
-        sulfur.update_quality()
-        
-        assert sulfur.sell_in == 10
-        assert sulfur.quality == 80
+    # Day zero
+    assert sulfur.sell_in == 10
+    assert sulfur.quality == 80    
+    sulfur.update_quality()
+    
+    # Day one
+    assert sulfur.sell_in == 10
+    assert sulfur.quality == 80
+    sulfur.update_quality()
+    
+    # Day two
+    assert sulfur.sell_in == 10
+    assert sulfur.quality == 80
+    sulfur.update_quality()
+    
+    # Day three
+    assert sulfur.sell_in == 10
+    assert sulfur.quality == 80
+    sulfur.update_quality()
+    
+    # Day four
+    assert sulfur.sell_in == 10
+    assert sulfur.quality == 80
+    sulfur.update_quality()
+    
+    # Day five
+    assert sulfur.sell_in == 10
+    assert sulfur.quality == 80
+    sulfur.update_quality()
+    
+    # Day six
+    assert sulfur.sell_in == 10
+    assert sulfur.quality == 80
