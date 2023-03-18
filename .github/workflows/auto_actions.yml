@@ -30,7 +30,10 @@ jobs:
       - name: Black formatting
         run: |
           black .
-      - name: Test with pytest
+      - name: Test with pytest and coverage
         run: |
-          pytest
+          coverage run -m pytest
+      - name: Coverage report
+        run:
+          coverage report
       # When Env Variables are created in /settings/secrets/actions you can call it as ${{secrets.[name of the var]}}
