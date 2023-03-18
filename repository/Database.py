@@ -98,3 +98,4 @@ class Database:
         return self.collection.update_one(
             {"_id": id}, {"$set": update_statemen}
         ).modified_count
+    
