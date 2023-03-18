@@ -12,7 +12,6 @@ def mouse():
 
     return test_mouse
 
-
 # We will test the method that change the quality itself.
 @pytest.mark.test_set_quality
 def test_set_quality(mouse):

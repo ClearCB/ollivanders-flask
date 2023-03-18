@@ -12,19 +12,6 @@ class NormalItem(Item):
     def __init__(self, name, sell_in, quality):
         Item.__init__(self, name, sell_in, quality)
 
-    # Getters/Setters
-    def get_name(self):
-        return self.name
-
-    def get_sell_n(self):
-        return self.sell_in
-
-    def get_quality(self):
-        return self.quality
-
-    def set_name(self, new_name):
-        self.name = new_name
-
     def set_sell_in(self):
         self.sell_in = self.sell_in + -1
 
