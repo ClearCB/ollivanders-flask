@@ -4,6 +4,7 @@ from domain.items.Sulfuras import Sulfuras
 from domain.items.Conjured import Conjured
 from domain.items.Backstage import Backstage
 
+
 class Item:
     def __init__(self, id, name, sell_in, quality, item_type):
         self.id = id
@@ -34,14 +35,12 @@ class Item:
             "name": self.get_name(),
             "sell_in": self.get_sell_in(),
             "quality": self.get_quality(),
-            "item_type": self.get_item_type()
+            "item_type": self.get_item_type(),
         }
 
     @staticmethod
     def to_object(name, sell_in, quality, item_type):
-
         # Using globals that allow us to acces to all the variables.
         item_object = globals()[item_type](name, int(sell_in), int(quality))
 
         return item_object
-        
