@@ -10,7 +10,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      MONGO_ATLAS_URI: '${{ secrets.MONGO_ATLAS_URI }}'
+      MONGO_ATLAS_URI: '${{ secrets.KEY }}'
     steps:
       - uses: actions/checkout@v3
       - name: Set up Python v${{ matrix.python-version }}
