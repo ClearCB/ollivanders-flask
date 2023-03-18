@@ -1,23 +1,19 @@
 name: Ollivander shop
 
 on: 
-  # Select the branch in which this will occurr
   push:
     branches:
       - main
       - develop
 
 jobs:
-  # What is going to happen
   build:
-    # Setting up a container
     runs-on: ubuntu-latest
     env:
-      MONGO_ATLAS_URI: '${{ secrets.MONGO_ATLAS_URI }}'
+      MONGO_ATLAS_URI: "${{ secrets.MONGO_ATLAS_URI }}"
     strategy:
       matrix:
         python-version: ["3.10"]
-    # Steps to follow at the workflow
     steps:
       - uses: actions/checkout@v3
       - name: Set up Python v${{ matrix.python-version }}
@@ -29,7 +25,7 @@ jobs:
           python -m pip install --upgrade pip
           pip install black pytest
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-          export MONGO_ATLAS_URI=${{ secrets.MONGO_ATLAS_URI }}
+          export MONGO_ATLAS_URI="${{ secrets.MONGO_ATLAS_URI }}"
       - name: Black formatting
         run: |
           black .
@@ -39,4 +35,3 @@ jobs:
       - name: Coverage report
         run:
           coverage report
-      # When Env Variables are created in /settings/secrets/actions you can call it as ${{secrets.[name of the var]}}
