@@ -24,14 +24,14 @@ def test_db_not_correct():
 @pytest.fixture
 def test_item_one():
 
-    item = {"_id": 1, "name": "Aged Brie", "sell_in": 10, "quality": 30}
+    item = {"_id": 1, "name": "Aged Brie", "sell_in": 10, "quality": 30, "type":"Aged Brie"}
     return item
 
 
 @pytest.fixture
 def test_item_two():
 
-    item = {"_id": 2, "name": "Aged Brie", "sell_in": 10, "quality": 30}
+    item = {"_id": 2, "name": "Aged Brie", "sell_in": 10, "quality": 30, "type":"Aged Brie"}
     return item
 
 
@@ -89,12 +89,12 @@ def test_insert_item(test_db_correct, test_item_one, test_item_two):
     assert test_db_correct.insert_item(test_item_two).inserted_id == 2
 
 
-# @pytest.mark.test_get_inventory
-# def test_get_inventory(test_db_correct):
+@pytest.mark.test_get_inventory
+def test_get_inventory(test_db_correct):
 
-#     inventory_test = [
-#         {"_id": 1, "name": "Aged Brie", "sell_in": 10, "quality": 30},
-#         {"_id": 2, "name": "Aged Brie", "sell_in": 10, "quality": 30},
-#     ]
+    inventory_test = [
+        {"_id": 1, "name": "Aged Brie", "sell_in": 10, "quality": 30,"type":"Aged Brie"},
+        {"_id": 2, "name": "Aged Brie", "sell_in": 10, "quality": 30,"type":"Aged Brie"},
+    ]
 
-#     assert test_db_correct.inventory() == inventory_test
+    assert test_db_correct.inventory() == inventory_test

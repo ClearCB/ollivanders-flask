@@ -59,3 +59,7 @@ class Database:
         if Database.correct_item(item):
 
             return self.db["inventory"].insert_one(item)
+
+    def inventory(self):
+
+        return list(self.db["inventory"].find())
