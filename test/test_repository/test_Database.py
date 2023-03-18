@@ -3,6 +3,7 @@ from pymongo import MongoClient
 import os
 import pytest
 
+aged_brie = "Aged Brie"
 
 # Creating an aditional collection / database to the test.
 @pytest.fixture
@@ -25,14 +26,14 @@ def test_db_not_correct():
 @pytest.fixture
 def test_item_one():
 
-    item = {"_id": 1, "name": "Aged Brie", "sell_in": 10, "quality": 30, "type":"Aged Brie"}
+    item = {"_id": 1, "name": aged_brie, "sell_in": 10, "quality": 30, "type":aged_brie}
     return item
 
 
 @pytest.fixture
 def test_item_two():
 
-    item = {"_id": 2, "name": "Aged Brie", "sell_in": 10, "quality": 30, "type":"Aged Brie"}
+    item = {"_id": 2, "name": aged_brie, "sell_in": 10, "quality": 30, "type":aged_brie}
     return item
 
 
@@ -80,7 +81,7 @@ def test_get_databaase(test_db_correct):
 @pytest.mark.test_correct_item
 def test_correct_item(test_item_one, test_item_two):
 
-    item = {"_id": 2, "name": "Aged Brie", "sell_in": Database("s"), "quality": 30}
+    item = {"_id": 2, "name": aged_brie, "sell_in": Database("s"), "quality": 30}
 
     assert Database.correct_item(test_item_one)
     assert Database.correct_item(test_item_two) 
@@ -102,8 +103,8 @@ def test_insert_item(test_db_correct, test_item_one, test_item_two):
 def test_get_inventory(test_db_correct):
 
     inventory_test = [
-        {"_id": 1, "name": "Aged Brie", "sell_in": 10, "quality": 30,"type":"Aged Brie"},
-        {"_id": 2, "name": "Aged Brie", "sell_in": 10, "quality": 30,"type":"Aged Brie"},
+        {"_id": 1, "name": aged_brie, "sell_in": 10, "quality": 30,"type":aged_brie},
+        {"_id": 2, "name": aged_brie, "sell_in": 10, "quality": 30,"type":aged_brie},
     ]
 
     assert test_db_correct.inventory() == inventory_test
@@ -111,7 +112,7 @@ def test_get_inventory(test_db_correct):
 @pytest.mark.test_get_item
 def test_get_item(test_db_correct):
 
-    assert test_db_correct.get_item(1) == {"_id": 1, "name": "Aged Brie", "sell_in": 10, "quality": 30,"type":"Aged Brie"}
+    assert test_db_correct.get_item(1) == {"_id": 1, "name": aged_brie, "sell_in": 10, "quality": 30,"type":aged_brie}
 
 @pytest.mark.test_delete_item
 def test_delete_item(test_db_correct):
