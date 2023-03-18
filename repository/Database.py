@@ -83,7 +83,7 @@ class Database:
 
     def update_item(self, id, **args):
 
-        correct_keys = ["name","sell_in", "quality", "type"]
+        correct_keys = ["name","sell_in", "quality", "item_type"]
         # Create an update statement
         update_statemen = {}
 

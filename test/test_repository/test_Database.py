@@ -26,14 +26,14 @@ def test_db_not_correct():
 @pytest.fixture
 def test_item_one():
 
-    item = {"_id": 1, "name": aged_brie, "sell_in": 10, "quality": 30, "type":aged_brie}
+    item = {"_id": 1, "name": aged_brie, "sell_in": 10, "quality": 30, "item_type":aged_brie}
     return item
 
 
 @pytest.fixture
 def test_item_two():
 
-    item = {"_id": 2, "name": aged_brie, "sell_in": 10, "quality": 30, "type":aged_brie}
+    item = {"_id": 2, "name": aged_brie, "sell_in": 10, "quality": 30, "item_type":aged_brie}
     return item
 
 
@@ -103,8 +103,8 @@ def test_insert_item(test_db_correct, test_item_one, test_item_two):
 def test_get_inventory(test_db_correct):
 
     inventory_test = [
-        {"_id": 1, "name": aged_brie, "sell_in": 10, "quality": 30,"type":aged_brie},
-        {"_id": 2, "name": aged_brie, "sell_in": 10, "quality": 30,"type":aged_brie},
+        {"_id": 1, "name": aged_brie, "sell_in": 10, "quality": 30,"item_type":aged_brie},
+        {"_id": 2, "name": aged_brie, "sell_in": 10, "quality": 30,"item_type":aged_brie},
     ]
 
     assert test_db_correct.inventory() == inventory_test
@@ -112,7 +112,7 @@ def test_get_inventory(test_db_correct):
 @pytest.mark.test_get_item
 def test_get_item(test_db_correct):
 
-    assert test_db_correct.get_item(1) == {"_id": 1, "name": aged_brie, "sell_in": 10, "quality": 30,"type":aged_brie}
+    assert test_db_correct.get_item(1) == {"_id": 1, "name": aged_brie, "sell_in": 10, "quality": 30,"item_type":aged_brie}
 
 @pytest.mark.test_delete_item
 def test_delete_item(test_db_correct):
@@ -130,7 +130,7 @@ def test_update_item(test_db_correct, test_item_one):
     assert test_db_correct.update_item(1,name="hehe") == 1
     assert test_db_correct.update_item(1,name="heh2",sell_in=2) == 1
     assert test_db_correct.update_item(1,name="hehasd3415",sell_in=2, quality=3) == 1
-    assert test_db_correct.update_item(1,name="heh3415",sell_in=2, quality=3, type="Sulfuras") == 1
+    assert test_db_correct.update_item(1,name="heh3415",sell_in=2, quality=3, item_type="Sulfuras") == 1
 
     assert test_db_correct.update_item(1,name="heh3415",sell_in=2, quality=3, typ2="Sulfuras") == 0
     assert test_db_correct.update_item(2) == 0
