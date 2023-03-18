@@ -1,5 +1,7 @@
 from pymongo import MongoClient, errors
+from repository.models.initial_inventory import items_day_zero
 from json import loads, dumps
+import os
 
 
 class Database:
@@ -99,3 +101,11 @@ class Database:
             {"_id": id}, {"$set": update_statemen}
         ).modified_count
     
+    @staticmethod
+    def init_db():
+
+        client = MongoClient(os.environ["MONGO_ATLAS_URI"])
+        db = client["ollivander_shop"]
+        db.drop_collection("items")
+        collection = db["items"]
+        collection.insert_many(items_day_zero)
