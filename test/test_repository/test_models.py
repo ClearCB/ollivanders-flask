@@ -1,7 +1,7 @@
-from repository.models import Item
+from repository.models.Item import Item
 import pytest
 
-
+# Item test
 @pytest.fixture
 def test_model_item():
     item = Item(1, "Aged Brie", 19, 23)
