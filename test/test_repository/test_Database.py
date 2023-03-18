@@ -1,4 +1,5 @@
 from repository.Database import Database
+from repository.models.initial_inventory import items_day_zero
 from pymongo import MongoClient
 import os
 import pytest
@@ -134,3 +135,11 @@ def test_update_item(test_db_correct, test_item_one):
 
     assert test_db_correct.update_item(1,name="heh3415",sell_in=2, quality=3, typ2="Sulfuras") == 0
     assert test_db_correct.update_item(2) == 0
+
+@pytest.mark.test_init_db
+def test_init_db(test_db_correct):
+
+    assert test_db_correct.inventory() != items_day_zero
+    Database.init_db()
+    assert test_db_correct.inventory() == items_day_zero
+

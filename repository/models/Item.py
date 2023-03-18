@@ -3,7 +3,6 @@ from domain.items.NormalItem import NormalItem
 from domain.items.Sulfuras import Sulfuras
 from domain.items.Conjured import Conjured
 from domain.items.Backstage import Backstage
-from domain.items.item_names import names 
 
 class Item:
     def __init__(self, id, name, sell_in, quality, item_type):
