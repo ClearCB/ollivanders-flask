@@ -13,7 +13,7 @@ jobs:
     # Setting up a container
     runs-on: ubuntu-latest
     env:
-      MONGO_ATLAS_URI: ${{ secrets.MONGO_ATLAS_URI }}
+      MONGO_ATLAS_URI: '${{ secrets.MONGO_ATLAS_URI }}'
     strategy:
       matrix:
         python-version: ["3.10"]
