@@ -8,6 +8,7 @@ class Database:
         self.uri = db_uri
         self.client = None
         self.db = None
+        self.collection = None
 
     def get_uri(self):
 
@@ -16,6 +17,14 @@ class Database:
     def get_db(self):
 
         return self.db
+
+    def set_collection(self, collection):
+
+        self.collection = self.get_db()[collection]
+
+    def get_collection(self):
+
+        return self.collection
 
     def connect(self):
 
@@ -58,19 +67,19 @@ class Database:
 
         if Database.correct_item(item):
 
-            return self.db["inventory"].insert_one(item)
+            return self.collection.insert_one(item)
 
     def inventory(self):
 
-        return list(self.db["inventory"].find())
+        return list(self.collection.find())
 
     def get_item(self, id):
 
-        return self.db["inventory"].find_one({"_id": id})
+        return self.collection.find_one({"_id": id})
 
     def delete_item(self, id):
 
-        return self.db["inventory"].delete_one({"_id": id}).deleted_count
+        return self.collection.delete_one({"_id": id}).deleted_count
 
     def update_item(self, id, **args):
 
@@ -86,6 +95,6 @@ class Database:
                 update_statemen[arg] = args[arg]
 
 
-        return self.db["inventory"].update_one(
+        return self.collection.update_one(
             {"_id": id}, {"$set": update_statemen}
         ).modified_count
