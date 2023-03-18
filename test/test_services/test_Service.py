@@ -48,6 +48,6 @@ def test_update_one():
     assert Services.get_one(1) == item
 
 @pytest.mark.test_delete_one
-def test_delete_one
+def test_delete_one():
 
     assert Services.create_one(1,"Sulfutas",1,1,"Sulfuras").inserted_id == 1
