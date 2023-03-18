@@ -63,3 +63,7 @@ class Database:
     def inventory(self):
 
         return list(self.db["inventory"].find())
+    
+    def get_item(self, id):
+
+        return self.db["inventory"].find_one({"_id":id})

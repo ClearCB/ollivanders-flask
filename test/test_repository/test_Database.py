@@ -98,3 +98,10 @@ def test_get_inventory(test_db_correct):
     ]
 
     assert test_db_correct.inventory() == inventory_test
+
+@pytest.mark.test_get_item
+def test_get_item(test_db_correct):
+
+    assert test_db_correct.get_item(1) == {"_id": 1, "name": "Aged Brie", "sell_in": 10, "quality": 30,"type":"Aged Brie"}
+
+    
