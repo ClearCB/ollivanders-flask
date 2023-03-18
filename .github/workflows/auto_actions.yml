@@ -22,7 +22,6 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           export MONGO_ATLAS_URI=${{ secrets.MONGO_ATLAS_URI }}
-          echo $MONGO_ATLAS_URI
           pip install black pytest
           pip install -r requirements.txt
       - name: Black formatting
