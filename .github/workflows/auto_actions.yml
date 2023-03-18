@@ -6,7 +6,7 @@ on:
       - main
       - develop
 env:
-  MONGO_ATLAS_URI: '${{ secrets.KEY }}'
+  MONGO_ATLAS_URI: ${{ secrets.MONGO_ATLAS_URI }}
 
 jobs:
   build:
