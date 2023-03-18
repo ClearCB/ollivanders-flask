@@ -63,11 +63,29 @@ class Database:
     def inventory(self):
 
         return list(self.db["inventory"].find())
-    
+
     def get_item(self, id):
 
-        return self.db["inventory"].find_one({"_id":id})
-    
+        return self.db["inventory"].find_one({"_id": id})
+
     def delete_item(self, id):
 
-        return self.db["inventory"].delete_one({"_id":id}).deleted_count
+        return self.db["inventory"].delete_one({"_id": id}).deleted_count
+
+    def update_item(self, id, **args):
+
+        correct_keys = ["name","sell_in", "quality", "type"]
+        # Create an update statement
+        update_statemen = {}
+
+        # We get the args statement, in which the key : value pair is -> name="name"
+        for arg in args:
+
+            if arg in correct_keys:
+                # {name = "name"} is added to the update statement
+                update_statemen[arg] = args[arg]
+
+
+        return self.db["inventory"].update_one(
+            {"_id": id}, {"$set": update_statemen}
+        ).modified_count

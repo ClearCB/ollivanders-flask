@@ -10,6 +10,7 @@ def test_db_correct():
 
     test_ollivanders_database_correct = Database(os.environ["MONGO_ATLAS_URI"])
     test_ollivanders_database_correct.connect()
+    test_ollivanders_database_correct.db = test_ollivanders_database_correct.client["inventory"]
     return test_ollivanders_database_correct
 
 
@@ -113,9 +114,14 @@ def test_delete_item(test_db_correct):
 
 @pytest.mark.test_update_item
 def test_update_item(test_db_correct, test_item_one):
-    
+
+    test_db_correct.get_db().drop_collection("inventory")
     test_db_correct.insert_item(test_item_one)
 
-    assert test_db_correct.update_item(1) == 1
-    
+    assert test_db_correct.update_item(1,name="hehe") == 1
+    assert test_db_correct.update_item(1,name="heh2",sell_in=2) == 1
+    assert test_db_correct.update_item(1,name="hehasd3415",sell_in=2, quality=3) == 1
+    assert test_db_correct.update_item(1,name="heh3415",sell_in=2, quality=3, type="Sulfuras") == 1
+
+    assert test_db_correct.update_item(1,name="heh3415",sell_in=2, quality=3, typ2="Sulfuras") == 0
     assert test_db_correct.update_item(2) == 0
