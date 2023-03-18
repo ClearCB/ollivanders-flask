@@ -45,12 +45,12 @@ def test_get_database(test_db_correct,test_db_not_correct):
     assert isinstance(test_db_correct.database(), MongoClient) 
     assert test_db_not_correct.database() == None
 
-@pytest.mark.test_insert_item
-def test_insert_item(test_db_correct, item):
+# @pytest.mark.test_insert_item
+# def test_insert_item(test_db_correct, item):
 
-    assert test_db_correct.insert_item(item) == # Check what should return this method
+#     assert test_db_correct.insert_item(item) == # Check what should return this method
 
-@pytest.mark.test_get_inventory
-def test_get_inventory(test_db_correct):
+# @pytest.mark.test_get_inventory
+# def test_get_inventory(test_db_correct):
 
-    assert test_db_correct.inventory() == # Check what should return this method
+#     assert test_db_correct.inventory() == # Check what should return this method
