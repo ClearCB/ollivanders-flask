@@ -32,7 +32,7 @@ jobs:
           black .
       - name: Test with pytest and coverage
         with:
-          super_secret: ${{secrest.MONGO_ATLAS_URI}}
+          super_secret: ${{secrets.MONGO_ATLAS_URI}}
         run: |
           coverage run -m pytest
       - name: Coverage report
