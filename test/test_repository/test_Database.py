@@ -10,7 +10,6 @@ def test_db_correct():
 
     test_ollivanders_database_correct = Database(os.environ["MONGO_ATLAS_URI"])
     test_ollivanders_database_correct.connect()
-    test_ollivanders_database_correct.db = test_ollivanders_database_correct.client["inventory"]
     return test_ollivanders_database_correct
 
 
