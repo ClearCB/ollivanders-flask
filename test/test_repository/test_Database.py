@@ -104,4 +104,18 @@ def test_get_item(test_db_correct):
 
     assert test_db_correct.get_item(1) == {"_id": 1, "name": "Aged Brie", "sell_in": 10, "quality": 30,"type":"Aged Brie"}
 
+@pytest.mark.test_delete_item
+def test_delete_item(test_db_correct):
+
+    assert test_db_correct.delete_item(1) == 1
+    assert test_db_correct.delete_item(2) == 1
+    assert test_db_correct.delete_item(3) == 0
+
+@pytest.mark.test_update_item
+def test_update_item(test_db_correct, test_item_one):
     
+    test_db_correct.insert_item(test_item_one)
+
+    assert test_db_correct.update_item(1) == 1
+    
+    assert test_db_correct.update_item(2) == 0

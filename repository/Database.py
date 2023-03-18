@@ -67,3 +67,7 @@ class Database:
     def get_item(self, id):
 
         return self.db["inventory"].find_one({"_id":id})
+    
+    def delete_item(self, id):
+
+        return self.db["inventory"].delete_one({"_id":id}).deleted_count
