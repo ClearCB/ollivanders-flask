@@ -12,6 +12,8 @@ jobs:
   build:
     # Setting up a container
     runs-on: ubuntu-latest
+    env:
+      secrets: ${{ secrets.MONGO_ATLAS_URI }}
     strategy:
       matrix:
         python-version: ["3.10"]
@@ -31,8 +33,6 @@ jobs:
         run: |
           black .
       - name: Test with pytest and coverage
-        env:
-          secrets: ${{secrets.MONGO_ATLAS_URI}}
         run: |
           coverage run -m pytest
       - name: Coverage report
