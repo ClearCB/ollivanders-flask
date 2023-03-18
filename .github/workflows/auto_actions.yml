@@ -26,6 +26,7 @@ jobs:
           pip install black pytest
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
           export MONGO_ATLAS_URI="${{ secrets.MONGO_ATLAS_URI }}"
+          echo $MONGO_ATLAS_URI
       - name: Black formatting
         run: |
           black .
