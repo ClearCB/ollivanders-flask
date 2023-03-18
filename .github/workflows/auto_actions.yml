@@ -1,12 +1,13 @@
 name: Ollivander shop
 
+env:
+  MONGO_ATLAS_URI: ${{ secrets.MONGO_ATLAS_URI }}
 on: 
   push:
     branches:
       - main
       - develop
-env:
-  MONGO_ATLAS_URI: ${{ secrets.MONGO_ATLAS_URI }}
+
 
 jobs:
   build:
