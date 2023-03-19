@@ -1,3 +1,9 @@
+from domain.items.AgedBrie import AgedBrie
+from domain.items.Backstage import Backstage
+from domain.items.Sulfuras import Sulfuras
+from domain.items.NormalItem import NormalItem
+from domain.items.Conjured import Conjured
+
 
 class Item:
     def __init__(self, id, name, sell_in, quality, item_type):
@@ -16,3 +22,13 @@ class Item:
             "quality": self.quality,
             "item_type": self.item_type,
         }
+
+    def update_statement(self):
+
+        item_object = eval(
+            self.item_type + str(tuple([self.name, self.sell_in, self.quality]))
+        )
+
+        item_object.update_quality()
+
+        return {"sell_in": item_object.sell_in, "quality": item_object.quality}

@@ -1,13 +1,11 @@
 from repository.Database import Database
-import os
-
 
 class Services:
 
     @staticmethod
     def read_one(id):
 
-        return Database.read_one(id)
+        return Database.read_one(int(id))
 
     @staticmethod
     def delete_one(id):
