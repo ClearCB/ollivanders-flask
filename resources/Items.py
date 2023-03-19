@@ -10,19 +10,19 @@ class Items(Resource):
 
     def post(self):
 
-    
-    def parse_request():
+        pass
+    # def parse_request():
 
-        parser = reqparse.RequestParser(bundle_errors=True)
-        parser.add_argument('_id', type=int, required=True,
-                            help='id required')
-        parser.add_argument('sell_in', type=int, required=True,
-                            help='sell_in required')
-        parser.add_argument('quality', type=int, required=True,
-                            help='quality required')
-        parser.add_argument('item_type', type=str, required=True,
-                            help='quality required')
-        # args = parser.parse_args()
-        # es un diccionario con los argumentos
-        # especificados como keys
-        return parser.parse_args()
+    #     parser = reqparse.RequestParser(bundle_errors=True)
+    #     parser.add_argument('_id', type=int, required=True,
+    #                         help='id required')
+    #     parser.add_argument('sell_in', type=int, required=True,
+    #                         help='sell_in required')
+    #     parser.add_argument('quality', type=int, required=True,
+    #                         help='quality required')
+    #     parser.add_argument('item_type', type=str, required=True,
+    #                         help='quality required')
+    #     # args = parser.parse_args()
+    #     # es un diccionario con los argumentos
+    #     # especificados como keys
+    #     return parser.parse_args()
