@@ -57,3 +57,12 @@ class Database:
 
         return collection.update_one({"_id":id},{"$set":update_statement})
 
+
+    @staticmethod
+    def inventory():
+
+        client = MongoClient(os.environ.get("MONGO_ATLAS_URI"))
+        db = client["ollivander_shop"]
+        collection = db["items"]
+
+        return list(collection.find())

@@ -1,4 +1,5 @@
 from repository.Database import Database
+from repository.models.initial_inventory import items_day_zero
 import pytest
 
 
@@ -63,3 +64,13 @@ def test_update_one():
 def test_delete_one():
 
     assert Database.delete_one(0).deleted_count == 1
+
+
+@pytest.mark.test_inventory
+def test_inventory():
+
+
+    Database.drop_collection()
+    Database.init_db()
+
+    assert Database.inventory() == items_day_zero
