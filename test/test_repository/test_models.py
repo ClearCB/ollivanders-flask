@@ -28,3 +28,8 @@ def test_to_collection(test_model_item):
     }
 
     assert test_model_item.to_collection() == sample_item_json
+
+@pytest.mark.test_update_statement
+def test_update_statement(test_model_item):
+
+    assert test_model_item.update_statement() == {"sell_in":18,"quality":24}
