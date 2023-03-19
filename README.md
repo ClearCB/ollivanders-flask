@@ -21,23 +21,120 @@ To understand the working application is important you to read the following doc
 
 ## Install
 
+To use this application follow this steps:
+
+- create directory
+- create venv
+- !important mongodbatlas
+
+* Clone repository
+
+* Install requirements
+
+* Prepare mongo atlas uri
+
+
 ## Use
+
+When it is ready, you must run the file "app.py" or write the FLASK_APP and flask run. 
+### CLI
+
+```cmd
+curl -X GET http://localhost:5000/items/read-one/4
+```
+
+![cli-find](./doc/img/cli_find.png)
+
+```cmd
+curl -X GET http://localhost:5000/inventory
+```
+
+```
+curl -X POST
+curl -X PUT
+curl -X DELETE
+```
+
+### POSTMAN
+
+* Headers: Content-type / application/json
+
+GET:
+
+```postman
+http://localhost:5000/inventory/
+```
+
+![inventory](./doc/img/read-inventory.png)
+
+```postman
+http://localhost:5000/items/find-one/<id>
+```
+
+![readitem](./doc/img/read-item.png)
+
+POST:
+
+```postman
+http://localhost:5000/items/create-one" + json item at request
+```
+
+![json sample](./doc/img/post-item.png)
+
+PUT:
+
+```postman
+http://localhost:5000/inventory/update
+```
+
+![update-inventory](./doc/img/update-inventory.png)
+
+DELETE
 
 ## Pre-req
 
-* Flask
-* pymongo
+* Mongo DB database: is necessary to have already created an atlas cluster in mongoDB.
 
 ## Achitecture
 
-## Design
+* Repository
+* Services
+* Resources
+* Domain
+* Test
 
 ## Database schema
 
-MongoDB local with Docker.
+The DBMS used is mongoDB, non-relation database, using a unique database ("ollivander_shop") with a unique collection ("items")
 
-## Implementation
+```python
+
+{
+    "_id":1,
+    "name":"Sulfuras, item of god",
+    "sell_in":5,
+    "quality":10,
+    "item_type":"Sulfuras
+}
+```
+
+* _id = predefined id to unique identify an item
+* name = the name of the item
+* sell_in = the sell in date
+* quality = the actual quality of the item
+* item_type = the type of the item, used to catalog it
 
 ## Test
 
+### Unitary test
+
+### Postman test (manual)
 ## CRUD
+
+This application consist on an API with flask able to CRUD a database.
+
+## CI/CD
+
+github actions. keep tested and updated.
+
+## Dockerized

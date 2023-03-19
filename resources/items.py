@@ -26,8 +26,8 @@ def find_one(id):
 def delete_one(id):
 
     item = Services.delete_one(int(id))
-    if item:
-        return jsonify(id)
+    if item.deleted_count==1:
+        return jsonify({"Item id deleted":id})
     else:
         return jsonify({"error": "Item not found"})
     
