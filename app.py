@@ -1,21 +1,19 @@
 from flask import Flask
-from flask_restful import Api
+from flask_cors import CORS
 
+from resources.inventory import inventory_bp
+from resources.items import items_bp
 
 from repository.Database import Database
-from resources.Inventario import Inventario
-from resources.Items import Items
-
 
 app = Flask(__name__)
 
-api = Api(app, catch_all_404s=True)
-
+CORS(app)
+Database.drop_collection()
 Database.init_db()
 
-api.add_resource(Inventario, "/inventory")
-api.add_resource(Items, "/items/<id>","/items")
-
+app.register_blueprint(inventory_bp)
+app.register_blueprint(items_bp)
 
 if __name__ == "__main__":
-    app.run()
+    app.run(debug=True)

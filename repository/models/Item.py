@@ -1,8 +1,8 @@
 from domain.items.AgedBrie import AgedBrie
-from domain.items.NormalItem import NormalItem
-from domain.items.Sulfuras import Sulfuras
-from domain.items.Conjured import Conjured
 from domain.items.Backstage import Backstage
+from domain.items.Sulfuras import Sulfuras
+from domain.items.NormalItem import NormalItem
+from domain.items.Conjured import Conjured
 
 
 class Item:
@@ -13,34 +13,22 @@ class Item:
         self.quality = quality
         self.item_type = item_type
 
-    def get_id(self):
-        return self.id
-
-    def get_name(self):
-        return self.name
-
-    def get_sell_in(self):
-        return self.sell_in
-
-    def get_quality(self):
-        return self.quality
-
-    def get_item_type(self):
-        return self.item_type
-
     def to_collection(self):
         # Convert to json the object that is in correct format to create a new document in mongoDB.
         return {
-            "_id": self.get_id(),
-            "name": self.get_name(),
-            "sell_in": self.get_sell_in(),
-            "quality": self.get_quality(),
-            "item_type": self.get_item_type(),
+            "_id": self.id,
+            "name": self.name,
+            "sell_in": self.sell_in,
+            "quality": self.quality,
+            "item_type": self.item_type,
         }
 
-    @staticmethod
-    def to_object(name, sell_in, quality, item_type):
-        # Using globals that allow us to acces to all the variables.
-        item_object = globals()[item_type](name, int(sell_in), int(quality))
+    def update_statement(self):
 
-        return item_object
+        item_object = eval(
+            self.item_type + str(tuple([self.name, self.sell_in, self.quality]))
+        )
+
+        item_object.update_quality()
+
+        return {"sell_in": item_object.sell_in, "quality": item_object.quality}

@@ -1,47 +1,29 @@
 from repository.Database import Database
-from repository.models.Item import Item
-from flask import jsonify
-import os
-
 
 class Services:
-    @staticmethod
-    def create_one(id, **args):
-        db = Database(os.environ["MONGO_ATLAS_URI"])
-        db.connect()
-        db.set_collection("items")
-        item = Item(
-            id, args["name"], args["sell_in"], args["quality"], args["item_type"]
-        )
-
-        return db.insert_item(item.to_collection())
 
     @staticmethod
-    def get_one(id):
-        db = Database(os.environ["MONGO_ATLAS_URI"])
-        db.connect()
-        db.set_collection("items")
+    def read_one(id):
 
-        return db.get_item(id)
-
-    @staticmethod
-    def inventory():
-        db = Database(os.environ["MONGO_ATLAS_URI"])
-        db.connect()
-        db.set_collection("items")
-        return db.inventory()
+        return Database.read_one(int(id))
 
     @staticmethod
     def delete_one(id):
-        db = Database(os.environ["MONGO_ATLAS_URI"])
-        db.connect()
-        db.set_collection("items")
-        return db.delete_item(id)
+
+        return Database.delete_one(id)
 
     @staticmethod
-    def update_one(id, **args):
-        db = Database(os.environ["MONGO_ATLAS_URI"])
-        db.connect()
-        db.set_collection("items")
+    def create_one(item):
 
-        return db.update_item(id, **args)
+        return Database.create_one(item)
+
+    @staticmethod
+    def update_one(id, update_statement):
+
+        return Database.update_one(id, update_statement)
+    
+    @staticmethod
+    def inventory():
+
+        return Database.inventory()
+
