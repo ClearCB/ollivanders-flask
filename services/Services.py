@@ -1,18 +1,13 @@
 from repository.Database import Database
-from repository.models.Item import Item
-from flask import jsonify
 import os
 
 
 class Services:
     @staticmethod
-    def create_one(id, **args):
+    def create_one(item):
         db = Database(os.environ["MONGO_ATLAS_URI"])
         db.connect()
         db.set_collection("items")
-        item = Item(
-            id, args["name"], args["sell_in"], args["quality"], args["item_type"]
-        )
 
         return db.insert_item(item.to_collection())
 
