@@ -170,11 +170,11 @@ def test_update_item(test_db_correct, test_item_one):
     )
     assert test_db_correct.update_item(2) == 0
 
-
-@pytest.mark.test_init_db
-def test_init_db(test_db_correct):
-    test_db_correct.set_collection("items")
-    test_db_correct.update_item(1, name="hehe")
-    assert test_db_correct.inventory() != items_day_zero
-    Database.init_db()
-    assert test_db_correct.inventory() == items_day_zero
+# This test the mechanism, but to keep the database at time. I will not implement it, otherwise it initate the data everytime.
+# @pytest.mark.test_init_db
+# def test_init_db(test_db_correct):
+#     test_db_correct.set_collection("items")
+#     test_db_correct.update_item(1, name="hehe")
+#     assert test_db_correct.inventory() != items_day_zero
+#     Database.init_db()
+#     assert test_db_correct.inventory() == items_day_zero
