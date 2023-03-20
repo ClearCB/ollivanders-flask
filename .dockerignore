@@ -1,0 +1,15 @@
+# Common
+docker-compose.yml
+Dockerfile
+README.md
+.vscode
+__pycache__
+.pytest_cache
+**/Dockerfile*
+**/.vs
+**/.dockerignore
+**/.venv
+**/.git
+**/.gitignore
+**/.settings
+**/.toolstarget
