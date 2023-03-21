@@ -8,6 +8,7 @@ backstage = "Backstage passes to a TAFKAL80ETC concert"
 conjured = "Conjured Mana Cake"
 
 items_day_zero = [
+    Item(0, "test_item", 5, 10, "NormalItem").to_collection(),
     Item(1, dextitry, 10, 20, "Conjured").to_collection(),
     Item(2, agedBrie, 2, 0, "AgedBrie").to_collection(),
     Item(3, elixir, 5, 7, "NormalItem").to_collection(),

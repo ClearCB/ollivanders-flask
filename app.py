@@ -6,14 +6,18 @@ from resources.items import items_bp
 
 from repository.Database import Database
 
-app = Flask(__name__)
+def init_app():
 
-CORS(app)
-Database.drop_collection()
-Database.init_db()
+    app = Flask(__name__)
 
-app.register_blueprint(inventory_bp)
-app.register_blueprint(items_bp)
+    CORS(app)
+    Database.drop_collection()
+    Database.init_db()
+
+    app.register_blueprint(inventory_bp)
+    app.register_blueprint(items_bp)
+
+    return app
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", debug=True)
+    init_app().run(host="0.0.0.0", debug=True)
