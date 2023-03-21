@@ -12,7 +12,10 @@ items_bp = Blueprint("items", __name__)
 def create_item():
     item = request.json
     result = Services.create_one(item)
-    return jsonify({"_id": result.inserted_id})
+    if result.inserted_id == item["_id"]:
+        return jsonify({"_id": result.inserted_id})
+    else:
+        return jsonify({"ERROR":"The item could not be inserted"})
 
 @items_bp.route("/items/find-one/<id>", methods=["GET"])
 def find_one(id):
@@ -29,5 +32,14 @@ def delete_one(id):
     if item.deleted_count==1:
         return jsonify({"Item id deleted":id})
     else:
-        return jsonify({"error": "Item not found"})
+        return jsonify({"ERROR": "Item not found"})
+    
+@items_bp.route("/items/update-one/<id>", methods=["PUT"])
+def update_one(id):
+
+    item = Services.update_one(int(id), request.json)
+    if item.modified_count==1:
+        return jsonify({"Item id updated":id})
+    else:
+        return jsonify({"ERROR": "Item not found"})
     

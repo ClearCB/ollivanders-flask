@@ -61,18 +61,11 @@ def test_delete_item(client):
 @pytest.mark.test_update_item
 def test_update_item(client):
 
-    item = {
-        "_id": 0,
-        "name": "test_item",
-        "sell_in": 5,
-        "quality": 10,
-        "item_type": "NormalItem",
-    }
     update_statement = {
         "sell_in":8
     }
 
-    response = client.update(0,update_statement)
+    response = client.put("/items/update-one/0", json=update_statement)
 
     assert response.status_code == 200
     assert response.json == {"Item id updated":"0"}
@@ -88,7 +81,7 @@ def test_create_item(client):
         "item_type": "NormalItem",
     }
 
-    response = client.post("/items/create-one/",json=item)
+    response = client.post("/items/create-item",json=item)
 
 
     assert response.status_code == 200
