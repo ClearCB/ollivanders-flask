@@ -1,6 +1,8 @@
 from flask import Blueprint, request, jsonify
 from services.Services import Services
 
+message_error = "Item not found"
+
 # Creating a blueprint
 
 # A blueprint is a selection of common endpoints/routes to complete modularity to the flask applications
@@ -23,7 +25,7 @@ def find_one(id):
     if item:
         return jsonify(item)
     else:
-        return jsonify({"ERROR": "Item not found"})
+        return jsonify({"ERROR": message_error})
     
 @items_bp.route("/items/delete-one/<id>", methods=["DELETE"])
 def delete_one(id):
@@ -32,7 +34,7 @@ def delete_one(id):
     if item.deleted_count==1:
         return jsonify({"Item id deleted":id})
     else:
-        return jsonify({"ERROR": "Item not found"})
+        return jsonify({"ERROR": message_error})
     
 @items_bp.route("/items/update-one/<id>", methods=["PUT"])
 def update_one(id):
@@ -41,5 +43,5 @@ def update_one(id):
     if item.modified_count==1:
         return jsonify({"Item id updated":id})
     else:
-        return jsonify({"ERROR": "Item not found"})
+        return jsonify({"ERROR": message_error})
     
