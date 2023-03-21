@@ -21,28 +21,50 @@ To understand the working application is important you to read the following doc
 
 ## Install
 
-To use this application follow this steps:
+This application is able to use in 2 ways. First you must have an mongo atlas cluster and its key to connect to it. Then install it following these steps: 1 is posible to install it direcly cloning this repository and 2 [Dockerized](#dockerized): create a docker container with the application itself
 
-* create directory
-* create venv
-* !important mongodbatlas
+* Create directory
+
+```cmd
+mkdir .\flask-app
+cd flask-app
+```
+
+* Create virtual enviroment
+
+```cmd
+python -m venv venv
+```
+
+* Create enviroment variable called "MONGO_ATLAS_URI"
+
+```cmd
+windows_
+
+set MONGO_ATLAS_URI="uri"
+
+linux_
+
+export MONGO_ATLAS_URI="uri"
+```
 
 * Clone repository
 
+```cmd
+git clone URL
+```
+
 * Install requirements
 
-* Prepare mongo atlas uri
+```cmd
+pip install -r requirements.txt
+```
 
 ## Use
 
-To start the application with a file:
+Now that you have it in your local machine. Execute the "app.py" file with python and use postman or your cli to test the endpoints API.
 
-To start the application dockerized:
-
-
-When it is ready, you can test the app with the following actions:
-
-At the command line
+Using commandline:
 
 ### CLI
 
@@ -128,14 +150,6 @@ DELETE
 
 * Mongo DB database: is necessary to have already created an atlas cluster in mongoDB.
 
-## Achitecture
-
-* Repository
-* Services
-* Resources
-* Domain
-* Test
-
 ## Database schema
 
 The DBMS used is mongoDB, non-relation database, using a unique database ("ollivander_shop") with a unique collection ("items")
@@ -159,18 +173,28 @@ The DBMS used is mongoDB, non-relation database, using a unique database ("olliv
 
 ## Test
 
-### Unitary test
+Development complete with TDD almost everytest. Used coverage to keep tracking of testing.
 
-### Postman test (manual)
+![tdd test](./doc/img/tdd.png)
 
-## CRUD
-
-This application consist on an API with flask able to CRUD a database.
+![coverge](./doc/img/coverage.png)
 
 ## CI/CD
 
-github actions. keep tested and updated. development in docker container
+Using github actions keep track about the test and new features.
 
 ## Dockerized
 
-* Optional: create an image of docker in docker hub.
+To install the docker image of the application:
+
+```cmd
+docker pull docker push clearcb/flask-app:latest
+```
+
+Run a container
+
+```cmd
+docker run --name flask-local-app -e MONGO_ATLAS_URI="YOUR URI TO MONGO ATLAS CLUSTER" -p 5000:5000 --rm clearcb/flask-app:latest
+```
+
+After running this command you will be able to use the application sending request to the same URL as above.
