@@ -11,14 +11,21 @@ items_bp = Blueprint("items", __name__)
 
 error_not_found = {"ERROR":"Item not found. Check the data and try again."}
 
-@items_bp.route("/items/create-item", methods=["POST"])
+@items_bp.route("/items/create-one", methods=["POST"])
 def create_item():
 
     result = request.json
+    # Check if the item can be inserted
+    if Item.is_correct_json(result):
+        item_find = Services.read_one(result["_id"])
+        insertable = (result and item_find == None)
 
-    if result and Item.is_correct_json(result) :
-        result = Services.create_one(result)
-        return jsonify({"Item created with id": result.inserted_id})
+        if insertable:
+            result = Services.create_one(result)
+            return jsonify({"Item created with id": result.inserted_id})
+        else:
+            return jsonify({"ERROR": "The item could not be inserted"})
+
     else:
         return jsonify({"ERROR": "The item could not be inserted"})
 

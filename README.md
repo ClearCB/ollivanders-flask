@@ -35,12 +35,19 @@ To use this application follow this steps:
 
 ## Use
 
-When it is ready, you must run the file "app.py" or write the FLASK_APP and flask run.
+To start the application with a file:
+
+To start the application dockerized:
+
+
+When it is ready, you can test the app with the following actions:
+
+At the command line
 
 ### CLI
 
 ```cmd
-curl -X GET http://localhost:5000/items/read-one/4
+curl -X GET http://localhost:5000/items/find-one/4
 ```
 
 ![cli-find](./doc/img/cli_find.png)
@@ -54,13 +61,7 @@ curl -X PUT http://localhost:5000/inventory/update
 ```
 
 ```cmd
-curl -d "{  \"_id\": 15,
-            \"name\": \"sticky stick\", 
-            \"sell_in\": 80, 
-            \"quality\": 30}" 
-
--H "Content-Type: application/json" 
--X POST "http://localhost:5000/items/create-item"
+curl -d "{\"_id\": 15, \"name\": \"sticky stick\", \"sell_in\": 80, \"quality\": 30, \"item_type\":\"Conjured\"}" -H "Content-Type: application/json" -X POST http://localhost:5000/items/create-one
 ```
 
 ![insert](./doc/img/cli_insert.png)
@@ -69,7 +70,17 @@ curl -d "{  \"_id\": 15,
 curl -X DELETE http://localhost:5000/items/delete-one/15
 ```
 
+![delete-one](./doc/img/cli_delete.png)
+
+```cmd
+curl -d "{\"name\": \"sticky stick\", \"sell_in\": 80, \"quality\": 10}" -H "Content-Type: application/json" -X PUT http://localhost:5000/items/update-one/4
+```
+
+To test it with postman
+
 ### POSTMAN
+
+First is important to set up the headers with the following pair key-value.
 
 * Headers: Content-type / application/json
 
@@ -103,7 +114,15 @@ http://localhost:5000/inventory/update
 
 ![update-inventory](./doc/img/update-inventory.png)
 
+```postman
+http://localhost:5000/items/update-one/4 + json with update statment
+```
+
+![update-one](./doc/img/update-item.png)
+
 DELETE
+
+![delete-one](./doc/img/delete-item.png)
 
 ## Pre-req
 

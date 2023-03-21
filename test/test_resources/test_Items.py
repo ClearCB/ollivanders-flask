@@ -95,11 +95,11 @@ def test_create_item(client):
         "quality": 10,
         "item_type": "NormalItem",
     }
-    response = client.post("/items/create-item",json=item)
+    response = client.post("/items/create-one",json=item)
 
     assert response.status_code == 200
     assert response.json == {"Item created with id":1000000}
 
-    response = client.post("/items/create-item",json={"haha":24})
+    response = client.post("/items/create-one",json={"haha":24})
 
     assert response.json == {"ERROR": "The item could not be inserted"}
