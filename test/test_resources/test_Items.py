@@ -87,3 +87,7 @@ def test_create_item(client):
     assert response.status_code == 200
     assert response.json == {"_id":1000000}
 
+    response = client.post("/items/create-item",json={"haha":24})
+
+    assert response.status_code == 404
+    assert response.json == {"ERROR": "The item could not be inserted"}
