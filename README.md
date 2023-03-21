@@ -23,9 +23,9 @@ To understand the working application is important you to read the following doc
 
 To use this application follow this steps:
 
-- create directory
-- create venv
-- !important mongodbatlas
+* create directory
+* create venv
+* !important mongodbatlas
 
 * Clone repository
 
@@ -33,10 +33,10 @@ To use this application follow this steps:
 
 * Prepare mongo atlas uri
 
-
 ## Use
 
-When it is ready, you must run the file "app.py" or write the FLASK_APP and flask run. 
+When it is ready, you must run the file "app.py" or write the FLASK_APP and flask run.
+
 ### CLI
 
 ```cmd
@@ -49,10 +49,24 @@ curl -X GET http://localhost:5000/items/read-one/4
 curl -X GET http://localhost:5000/inventory
 ```
 
+```cmd
+curl -X PUT http://localhost:5000/inventory/update
 ```
-curl -X POST
-curl -X PUT
-curl -X DELETE
+
+```cmd
+curl -d "{  \"_id\": 15,
+            \"name\": \"sticky stick\", 
+            \"sell_in\": 80, 
+            \"quality\": 30}" 
+
+-H "Content-Type: application/json" 
+-X POST "http://localhost:5000/items/create-item"
+```
+
+![insert](./doc/img/cli_insert.png)
+
+```cmd
+curl -X DELETE http://localhost:5000/items/delete-one/15
 ```
 
 ### POSTMAN
@@ -129,12 +143,15 @@ The DBMS used is mongoDB, non-relation database, using a unique database ("olliv
 ### Unitary test
 
 ### Postman test (manual)
+
 ## CRUD
 
 This application consist on an API with flask able to CRUD a database.
 
 ## CI/CD
 
-github actions. keep tested and updated.
+github actions. keep tested and updated. development in docker container
 
 ## Dockerized
+
+* Optional: create an image of docker in docker hub.
