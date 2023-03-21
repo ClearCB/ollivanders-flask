@@ -60,6 +60,8 @@ def test_delete_item(client):
     response = client.delete("/items/delete-one/3ssr")
 
     assert response.json == error_delete_item
+    response = client.delete("/items/delete-one/0")
+    assert response.json == error_delete_item
 
 
 @pytest.mark.test_update_item

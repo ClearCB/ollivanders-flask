@@ -37,12 +37,12 @@ def test_update_statement(test_model_item):
 @pytest.mark.test_correct_json
 def test_correct_json():
 
-    assert Item.is_correct({"_id":2}) == False
-    assert Item.is_correct({"_id":2,"name":"Sulfuras"}) == False
-    assert Item.is_correct({"_id":2, "name":"Sulfuras","s":"Sulfuras","r":"Sulfuras","h":"Sulfuras"}) == False
-    assert Item.is_correct({"_id":2, "name":"Sulfuras","sell_in":"Sulfuras","quality":"Sulfuras","item_type":"Sulfuras"}) == False
-    assert Item.is_correct({"_id":2, "name":"Sulfuras","sell_in":2,"quality":3,"item_type":"Sulfuras"}) == True
-    assert Item.is_correct({"_id":2, "name":"Sulfuras","sell_in":2,"quality":3,"item_type":"as"}) == False
+    assert Item.is_correct_json({"_id":2}) == False
+    assert Item.is_correct_json({"_id":2,"name":"Sulfuras"}) == False
+    assert Item.is_correct_json({"_id":2, "name":"Sulfuras","s":"Sulfuras","r":"Sulfuras","h":"Sulfuras"}) == False
+    assert Item.is_correct_json({"_id":2, "name":"Sulfuras","sell_in":"Sulfuras","quality":"Sulfuras","item_type":"Sulfuras"}) == False
+    assert Item.is_correct_json({"_id":2, "name":"Sulfuras","sell_in":2,"quality":3,"item_type":"Sulfuras"}) == True
+    assert Item.is_correct_json({"_id":2, "name":"Sulfuras","sell_in":2,"quality":3,"item_type":"as"}) == False
 
 pytest.mark.test_correct_update_statement
 def test_correct_update_statement():

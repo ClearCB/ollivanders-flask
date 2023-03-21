@@ -2,8 +2,6 @@ from flask import Blueprint, request, jsonify
 from services.Services import Services
 from repository.models.Item import Item
 
-message_error = "Item not found"
-
 # Creating a blueprint
 
 # A blueprint is a selection of common endpoints/routes to complete modularity to the flask applications
@@ -15,13 +13,13 @@ items_bp = Blueprint("items", __name__)
 @items_bp.route("/items/create-item", methods=["POST"])
 def create_item():
 
-    item = request.json
+    result = request.json
 
-    if Item.is_correct(item):
-        result = Services.create_one(item)
-        return {"_id": result.inserted_id}
+    if result and Item.is_correct_json(result) :
+        result = Services.create_one(result)
+        return jsonify({"Item created with id": result.inserted_id})
     else:
-        return {"ERROR": "The item could not be inserted"}
+        return jsonify({"ERROR": "The item could not be inserted"})
 
 
 @items_bp.route("/items/find-one/<id>", methods=["GET"])
@@ -30,12 +28,12 @@ def find_one(id):
     try:
         result = Services.read_one(int(id))
     except ValueError:
-        return {"ERROR":"Item not found. Check the data and try again."}
+        return jsonify({"ERROR":"Item not found. Check the data and try again."})
 
-    if Item.is_correct(result.json):
-        return result
+    if result and Item.is_correct_json(result):
+        return jsonify(result)
     else:
-        return {"ERROR":"Item not found. Check the data and try again."}
+        return jsonify({"ERROR":"Item not found. Check the data and try again."})
 
 
 @items_bp.route("/items/delete-one/<id>", methods=["DELETE"])
@@ -44,19 +42,22 @@ def delete_one(id):
     try:
         result = Services.delete_one(int(id))
     except ValueError:
-        return {"ERROR":"Item not found. Check the data and try again."}
+        return jsonify({"ERROR":"Item not found. Check the data and try again."})
     
-    if result.deleted_count==1:
+    if result and result.deleted_count==1:
         return jsonify({"Item id deleted": id})
     else:
-        return {"ERROR":"Item not found. Check the data and try again."}
+        return jsonify({"ERROR":"Item not found. Check the data and try again."})
 
 
 @items_bp.route("/items/update-one/<id>", methods=["PUT"])
 def update_one(id):
 
-    result = Services.update_one(int(id), request.json)
-    if result != error:
+    result = None
+    if Item.correct_update_statement(request.json):
+        result = Services.update_one(int(id), request.json)
+
+    if result and result.modified_count == 1:
         return jsonify({"Item id updated": id})
     else:
-        return jsonify({"ERROR": message_error})
+        return jsonify({"ERROR":"Please, update action not posible. Check the data and try again"})
