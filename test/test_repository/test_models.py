@@ -43,3 +43,13 @@ def test_correct_json():
     assert Item.is_correct({"_id":2, "name":"Sulfuras","sell_in":"Sulfuras","quality":"Sulfuras","item_type":"Sulfuras"}) == False
     assert Item.is_correct({"_id":2, "name":"Sulfuras","sell_in":2,"quality":3,"item_type":"Sulfuras"}) == True
     assert Item.is_correct({"_id":2, "name":"Sulfuras","sell_in":2,"quality":3,"item_type":"as"}) == False
+
+pytest.mark.test_correct_update_statement
+def test_correct_update_statement():
+
+    assert Item.correct_update_statement({"_id":2,"name":"Sulfuras"}) == False
+    assert Item.correct_update_statement({"_id":2,"sell_in":2}) == False
+    assert Item.correct_update_statement({"name":"Sulfuras","sell_in":2}) == True
+    assert Item.correct_update_statement({"name":"Sulfuras","sell_in":2}) == True
+    assert Item.correct_update_statement({"name":"Sulfuras","sell_in":2,"quality":"as"}) == False
+    assert Item.correct_update_statement({"name":"Sulfuras","sell_in":2,"quality":5}) == True

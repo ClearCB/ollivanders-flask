@@ -30,6 +30,8 @@ def runner(app):
 @pytest.mark.test_get_item
 def test_get_item(client):
 
+    error_get_item = {"ERROR":"Item not found. Check the data and try again."}
+
     response = client.get("/items/find-one/0")
     item = {
         "_id": 0,
@@ -40,35 +42,46 @@ def test_get_item(client):
     }
     assert response.json == item
 
+    response = client.get("/items/find-one/sdg")
+    assert response.json == error_get_item
+
+    response = client.get("/items/find-one/126547")
+    assert response.json == error_get_item
 
 @pytest.mark.test_delete_item
 def test_delete_item(client):
 
-    response = client.delete("/items/delete-one/0")
-    m = {"Item id deleted": "0"}
-
-    assert response.json == m
-    assert response.status_code == 200
+    error_delete_item = {"ERROR":"Item not found. Check the data and try again."}
 
     response = client.delete("/items/delete-one/0")
-
-    error = {"ERROR": "Item not found"}
-
+    assert response.json == {"Item id deleted": "0"}
     assert response.status_code == 200
-    assert response.json == error
+
+    response = client.delete("/items/delete-one/3ssr")
+
+    assert response.json == error_delete_item
 
 
 @pytest.mark.test_update_item
 def test_update_item(client):
 
+    error_update_item = {"ERROR":"Please, update action not posible. Check the data and try again"}
+
     update_statement = {
         "sell_in":8
     }
-
     response = client.put("/items/update-one/0", json=update_statement)
-
     assert response.status_code == 200
     assert response.json == {"Item id updated":"0"}
+
+    update_statement = {
+        "sell_in":"36sad"
+    }
+    response = client.put("/items/update-one/0", json=update_statement)
+
+    assert response.json == error_update_item
+
+
 
 @pytest.mark.test_create_item
 def test_create_item(client):
@@ -80,14 +93,11 @@ def test_create_item(client):
         "quality": 10,
         "item_type": "NormalItem",
     }
-
     response = client.post("/items/create-item",json=item)
 
-
     assert response.status_code == 200
-    assert response.json == {"_id":1000000}
+    assert response.json == {"Item created with id":1000000}
 
     response = client.post("/items/create-item",json={"haha":24})
 
-    assert response.status_code == 404
     assert response.json == {"ERROR": "The item could not be inserted"}

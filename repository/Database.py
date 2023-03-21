@@ -1,4 +1,4 @@
-from pymongo import MongoClient, errors
+from pymongo import MongoClient
 from repository.models.initial_inventory import items_day_zero
 import os
 
