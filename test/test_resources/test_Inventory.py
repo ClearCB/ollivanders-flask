@@ -36,3 +36,19 @@ def test_inventory(client):
     
     assert response.status_code == 200
     assert item in response.json 
+
+@pytest.mark.test_update_inventory
+def test_update_inventory(client):
+
+    response = client.put("/inventory/update")
+
+    item = {
+        "_id":0,
+        "name":"test_item",
+        "sell_in":4,
+        "quality":9,
+        "item_type":"NormalItem"
+    }
+
+    assert response.status_code == 200
+    assert item in response.json

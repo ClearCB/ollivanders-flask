@@ -20,7 +20,7 @@ def find_one(id):
     if item:
         return jsonify(item)
     else:
-        return jsonify({"error": "Item not found"})
+        return jsonify({"ERROR": "Item not found"})
     
 @items_bp.route("/items/delete-one/<id>", methods=["DELETE"])
 def delete_one(id):
