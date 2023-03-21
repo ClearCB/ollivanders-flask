@@ -9,6 +9,7 @@ from repository.models.Item import Item
 # Create the blueprint for the items, which will store all the endpoints related to the items itself.
 items_bp = Blueprint("items", __name__)
 
+error_not_found = {"ERROR":"Item not found. Check the data and try again."}
 
 @items_bp.route("/items/create-item", methods=["POST"])
 def create_item():
@@ -28,12 +29,12 @@ def find_one(id):
     try:
         result = Services.read_one(int(id))
     except ValueError:
-        return jsonify({"ERROR":"Item not found. Check the data and try again."})
+        return jsonify(error_not_found)
 
     if result and Item.is_correct_json(result):
         return jsonify(result)
     else:
-        return jsonify({"ERROR":"Item not found. Check the data and try again."})
+        return jsonify(error_not_found)
 
 
 @items_bp.route("/items/delete-one/<id>", methods=["DELETE"])
@@ -42,12 +43,12 @@ def delete_one(id):
     try:
         result = Services.delete_one(int(id))
     except ValueError:
-        return jsonify({"ERROR":"Item not found. Check the data and try again."})
+        return jsonify(error_not_found)
     
     if result and result.deleted_count==1:
         return jsonify({"Item id deleted": id})
     else:
-        return jsonify({"ERROR":"Item not found. Check the data and try again."})
+        return jsonify(error_not_found)
 
 
 @items_bp.route("/items/update-one/<id>", methods=["PUT"])

@@ -12,6 +12,7 @@ inventory_bp = Blueprint("inventory", __name__)
 
 @inventory_bp.route("/inventory", methods=["GET"])
 def get_inventory():
+
     inventory = Services.inventory()
     return jsonify(inventory)
 
@@ -24,7 +25,9 @@ def update_inventory():
 
         item_to_object = Item(item["_id"], item["name"], item["sell_in"],item["quality"],item["item_type"])
 
-        Services.update_one(item["_id"], item_to_object.update_statement())
+        if Item.correct_update_statement(item_to_object.update_statement()):
+            
+            Services.update_one(item["_id"], item_to_object.update_statement())
 
     inventory = Services.inventory()
 
