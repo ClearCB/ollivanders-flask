@@ -21,7 +21,11 @@ To understand the working application is important you to read the following doc
 
 ## Install
 
-This application is able to use in 2 ways. First you must have an mongo atlas cluster and its key to connect to it. Then install it following these steps: 1 is posible to install it direcly cloning this repository and 2 [Dockerized](#dockerized): create a docker container with the application itself
+This application is able to use in 2 ways. First you must have an mongo atlas cluster and its key to connect to it the key must look something like this:
+
+"mongodb+srv://<database>:<password>@<urconnection>/?retryWrites=true&w=majority"
+
+Then install it following these steps: 1 is posible to install it direcly cloning this repository and 2 [Dockerized](#dockerized): create a docker container with the application itself
 
 * Create directory
 
@@ -194,7 +198,7 @@ docker pull docker push clearcb/flask-app:latest
 Run a container
 
 ```cmd
-docker run --name flask-local-app -e MONGO_ATLAS_URI="YOUR URI TO MONGO ATLAS CLUSTER" -p 5000:5000 --rm clearcb/flask-app:latest
+docker run --name flask-local-app -e MONGO_ATLAS_URI="URI MONGO" -p 5000:5000 --rm clearcb/flask-app:latest
 ```
 
 After running this command you will be able to use the application sending request to the same URL as above.
