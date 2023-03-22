@@ -10,16 +10,16 @@ from repository.models.check_item import is_correct_json, correct_update_stateme
 # Create the blueprint for the items, which will store all the endpoints related to the items itself.
 items_bp = Blueprint("items", __name__)
 
-error_not_found = {"ERROR":"Item not found. Check the data and try again."}
+error_not_found = {"ERROR": "Item not found. Check the data and try again."}
+
 
 @items_bp.route("/items/create-one", methods=["POST"])
 def create_item():
-
     result = request.json
     # Check if the item can be inserted
     if is_correct_json(result):
         item_find = Services.read_one(result["_id"])
-        insertable = (result and item_find == None)
+        insertable = result and item_find == None
 
         if insertable:
             result = Services.create_one(result)
@@ -33,7 +33,6 @@ def create_item():
 
 @items_bp.route("/items/find-one/<id>", methods=["GET"])
 def find_one(id):
-
     try:
         result = Services.read_one(int(id))
     except ValueError:
@@ -47,13 +46,12 @@ def find_one(id):
 
 @items_bp.route("/items/delete-one/<id>", methods=["DELETE"])
 def delete_one(id):
-
     try:
         result = Services.delete_one(int(id))
     except ValueError:
         return jsonify(error_not_found)
-    
-    if result and result.deleted_count==1:
+
+    if result and result.deleted_count == 1:
         return jsonify({"Item id deleted": id})
     else:
         return jsonify(error_not_found)
@@ -61,7 +59,6 @@ def delete_one(id):
 
 @items_bp.route("/items/update-one/<id>", methods=["PUT"])
 def update_one(id):
-
     result = None
     if correct_update_statement(request.json):
         result = Services.update_one(int(id), request.json)
@@ -69,4 +66,6 @@ def update_one(id):
     if result and result.modified_count == 1:
         return jsonify({"Item id updated": id})
     else:
-        return jsonify({"ERROR":"Please, update action not posible. Check the data and try again"})
+        return jsonify(
+            {"ERROR": "Please, update action not posible. Check the data and try again"}
+        )

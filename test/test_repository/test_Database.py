@@ -5,7 +5,6 @@ import pytest
 
 @pytest.mark.test_create_one
 def test_create_one():
-
     Database.drop_collection()
 
     item = {
@@ -21,7 +20,6 @@ def test_create_one():
 
 @pytest.mark.test_read_one
 def test_read_one():
-
     item = {
         "_id": 0,
         "name": "Hat",
@@ -35,7 +33,6 @@ def test_read_one():
 
 @pytest.mark.test_update_one
 def test_update_one():
-
     item = {
         "_id": 0,
         "name": "Hat",
@@ -43,7 +40,7 @@ def test_update_one():
         "quality": 1,
         "item_type": "Conjured",
     }
-    
+
     Database.delete_one(0)
     Database.create_one(item)
 
@@ -62,14 +59,11 @@ def test_update_one():
 
 @pytest.mark.test_delete_one
 def test_delete_one():
-
     assert Database.delete_one(0).deleted_count == 1
 
 
 @pytest.mark.test_inventory
 def test_inventory():
-
-
     Database.drop_collection()
     Database.init_db()
 
