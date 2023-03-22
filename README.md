@@ -185,10 +185,11 @@ Tox is a tool which allow us to automate testing in different enviroments, also 
 
 ### Bandit
 
-Bandit is a tool which allow us to check security problems in our code. 
+Bandit is a tool which allow us to check security problems in our code.
+
 ## CI/CD
 
-Using github actions keep track about the test and new features.
+Using github actions, tox and bandit keep track about the test and new features.
 
 ## Dockerized
 
