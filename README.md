@@ -187,10 +187,6 @@ Development complete with TDD almost everytest. Used coverage to keep tracking o
 
 Tox is a tool which allow us to automate testing in different enviroments, also automate commands to keep track about testing
 
-### Bandit
-
-Bandit is a tool which allow us to check security problems in our code.
-
 ## CI/CD
 
 Using github actions, tox and bandit keep track about the test and new features.
