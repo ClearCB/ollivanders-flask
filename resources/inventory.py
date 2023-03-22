@@ -1,6 +1,7 @@
 from flask import Blueprint, jsonify
 from services.Services import Services
 from repository.models.Item import Item
+from repository.models.check_item import correct_update_statement
 
 
 # Creating a blueprint
@@ -25,7 +26,7 @@ def update_inventory():
 
         item_to_object = Item(item["_id"], item["name"], item["sell_in"],item["quality"],item["item_type"])
 
-        if Item.correct_update_statement(item_to_object.update_statement()):
+        if correct_update_statement(item_to_object.update_statement()):
             
             Services.update_one(item["_id"], item_to_object.update_statement())
 

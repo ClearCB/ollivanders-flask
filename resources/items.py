@@ -1,6 +1,7 @@
 from flask import Blueprint, request, jsonify
 from services.Services import Services
 from repository.models.Item import Item
+from repository.models.check_item import is_correct_json, correct_update_statement
 
 # Creating a blueprint
 
@@ -16,7 +17,7 @@ def create_item():
 
     result = request.json
     # Check if the item can be inserted
-    if Item.is_correct_json(result):
+    if is_correct_json(result):
         item_find = Services.read_one(result["_id"])
         insertable = (result and item_find == None)
 
@@ -38,7 +39,7 @@ def find_one(id):
     except ValueError:
         return jsonify(error_not_found)
 
-    if result and Item.is_correct_json(result):
+    if result and is_correct_json(result):
         return jsonify(result)
     else:
         return jsonify(error_not_found)
@@ -62,7 +63,7 @@ def delete_one(id):
 def update_one(id):
 
     result = None
-    if Item.correct_update_statement(request.json):
+    if correct_update_statement(request.json):
         result = Services.update_one(int(id), request.json)
 
     if result and result.modified_count == 1:
