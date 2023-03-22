@@ -33,3 +33,7 @@ jobs:
       - name: Coverage report
         run:
           coverage report
+      - name: Tox and bandit
+        run:
+          tox
+
