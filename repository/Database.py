@@ -6,8 +6,12 @@ import os
 class Database:
     @staticmethod
     def connect(database):
-        client = MongoClient(os.environ.get("MONGO_ATLAS_URI"))
-        return client[database]
+        try:
+            client = MongoClient(os.environ.get("MONGO_ATLAS_URI"))
+        except ConnectionError:
+            print("Connection error. Please, check the URI and try again")
+        else:
+            return client[database]
 
     @staticmethod
     def collection(collection):
