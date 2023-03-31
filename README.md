@@ -106,6 +106,8 @@ To test it with postman
 
 ### POSTMAN
 
+[![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/26303640-7955f6a5-90d8-4f52-836c-342a3333393d?action=collection%2Ffork&collection-url=entityId%3D26303640-7955f6a5-90d8-4f52-836c-342a3333393d%26entityType%3Dcollection%26workspaceId%3Dcdad8672-10fb-4e5b-b91d-7130730bbce8)
+
 First is important to set up the headers with the following pair key-value.
 
 * Headers: Content-type / application/json
@@ -113,7 +115,7 @@ First is important to set up the headers with the following pair key-value.
 GET:
 
 ```postman
-http://localhost:5000/inventory/
+http://localhost:5000/inventory
 ```
 
 ![inventory](./doc/img/read-inventory.png)
@@ -149,6 +151,10 @@ http://localhost:5000/items/update-one/4 + json with update statment
 DELETE
 
 ![delete-one](./doc/img/delete-item.png)
+
+```postman
+http://localhost:5000/items/delete-one/15 
+```
 
 ## Pre-req
 

@@ -1,6 +1,5 @@
 from flask import Blueprint, request, jsonify
 from services.Services import Services
-from repository.models.Item import Item
 from repository.models.check_item import is_correct_json, correct_update_statement
 
 # Creating a blueprint
