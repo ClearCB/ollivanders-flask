@@ -32,7 +32,7 @@ setup(
         "dnspython==2.3.0",
         "exceptiongroup==1.1.1",
         "filelock==3.10.7",
-        "flask==2.2.3",
+        "flask==2.2.5",
         "flask-cors==3.0.10",
         "iniconfig==2.0.0",
         "itsdangerous==2.1.2",
