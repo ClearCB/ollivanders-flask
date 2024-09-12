@@ -1,0 +1,50 @@
+services:
+  db:
+    container_name: mongo
+    image: mongo
+    volumes:
+      - mongodb_data:/data/db
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: mongoadmin
+      MONGO_INITDB_ROOT_PASSWORD: secret
+    ports:
+      - "27017:27017"
+    networks:
+      - homenet
+
+  api-development:
+    container_name: flask-local-app-dev
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: development # Use the development stage
+    volumes:
+      - .:/app # Mount local code for live changes
+    environment:
+      FLASK_APP: "app:init_app" # Set Flask app entry point
+      MONGO_ATLAS_URI: mongodb://mongoadmin:secret@mongo:27017/
+    ports:
+      - "5000:5000"
+    networks:
+      - homenet
+    command: flask run --host=0.0.0.0 --port=5000 # Hot-reloading
+  # api-production:
+  #   container_name: flask-local-app-prod
+  #   build:
+  #     context: .
+  #     dockerfile: Dockerfile
+  #     target: production  # Use the production stage
+  #   environment:
+  #     FLASK_APP: "app:init_app"  # Add this line
+  #     MONGO_ATLAS_URI: mongodb://mongoadmin:secret@mongo:27017/
+  #   ports:
+  #     - "5000:5000"
+  #   networks:
+  #     - homenet
+  #   command: python ./app.py
+networks:
+  homenet:
+
+
+volumes:
+  mongodb_data:

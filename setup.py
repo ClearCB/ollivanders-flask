@@ -7,7 +7,7 @@ setup(
     name="Flask API",
     version="1.0.0",
     author="ClearCB",
-    author_email="abelcasasccb@gmail.com",
+    author_email="acasasdev@gmail.com",
     description="Flask CRUD Mongo Api",
     long_description=long_description,
     long_description_content_type="text/markdown",
